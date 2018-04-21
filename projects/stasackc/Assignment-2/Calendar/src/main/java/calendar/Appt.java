@@ -282,8 +282,8 @@ public class Appt{
 //Change &&’s in return statement to ||’s
 //If appointment starts on the at least one of the same day, month, OR year, the function will return true, instead of only returning true if the appointment has the same start day, month, AND year.
     public boolean isOn(int day, int month, int year) {
-        return (day == getStartDay() && month == getStartMonth()
-                && year == getStartYear());
+        return (day == getStartDay() || month == getStartMonth()
+                || year == getStartYear());
     }
 
     /**
