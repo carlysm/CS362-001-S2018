@@ -56,7 +56,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test022()  throws Throwable  {
+  public void test03()  throws Throwable  {
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
@@ -74,7 +74,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test021()  throws Throwable  {
+  public void test04()  throws Throwable  {
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
@@ -97,7 +97,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test03()  throws Throwable  {
+  public void test05()  throws Throwable  {
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
@@ -109,7 +109,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test04()  throws Throwable  {
+  public void test06()  throws Throwable  {
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
@@ -125,7 +125,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test05()  throws Throwable  {
+  public void test07()  throws Throwable  {
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
@@ -142,7 +142,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test06()  throws Throwable  {
+  public void test08()  throws Throwable  {
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
@@ -159,7 +159,7 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test07()  throws Throwable  {
+  public void test09()  throws Throwable  {
     CalDay day1 = new CalDay();
     assertEquals("", day1.toString());
     assertEquals("", day1.getFullInfomrationApp(day1));

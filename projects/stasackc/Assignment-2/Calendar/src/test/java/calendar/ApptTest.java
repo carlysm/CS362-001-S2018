@@ -243,9 +243,9 @@ public class ApptTest  {
 
           Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
           appt.setValid();
-          assertFalse(appt.getValid());
+          assertTrue(appt.getValid());
 
-          assertEquals("\t19/4/2018 at 12:00am ,CS362 Lecture, Software Engineering II\n", appt.toString());
+          assertEquals("\t4/19/2018 at 12:00am ,CS362 Lecture, Software Engineering II\n", appt.toString());
         }
 
 }
