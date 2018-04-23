@@ -190,7 +190,6 @@ public class ApptTest  {
         String title = "CS362 Lecture";
         String description = "Software Engineering II";
         String email = "carly@gmail.com";
-        //int [] recurDays = new int [] {0, 4};
 
         Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
 

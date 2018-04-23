@@ -121,9 +121,6 @@ public class CalDayTest{
     appt1.setValid();
 
     day1.addAppt(appt1);
-
-    //LinkedList<Appt> appts = new LinkedList<Appt>(Arrays.asList(appt1));
-    //assertEquals(appts, day1.getAppts());
     assertEquals("\t --- 4/19/2018 --- \n --- -------- Appointments ------------ --- \n\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n \n", day1.toString());
   }
 
@@ -164,7 +161,6 @@ public class CalDayTest{
   @Test(timeout = 4000)
   public void test07()  throws Throwable  {
     CalDay day1 = new CalDay();
-    //assertFalse(day1.isValid());
     assertEquals("", day1.toString());
     assertEquals("", day1.getFullInfomrationApp(day1));
   }
