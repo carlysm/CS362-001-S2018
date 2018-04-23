@@ -28,9 +28,6 @@ public class DataHandlerTest{
   @Test(timeout = 4000)
   public void test01()  throws Throwable  {
     DataHandler data = new DataHandler("caldata.xml");
-    //Appt appt1 = new Appt(15, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
-
-    //assertTrue(data.saveAppt(appt1));
 
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
@@ -43,14 +40,12 @@ public class DataHandlerTest{
     cal.set(GregorianCalendar.DATE, 20);
 
     assertEquals("Second date specified is not before the first date specified.", data.getApptRange(cal, cal2));
-
   }
 
   @Test(timeout = 4000)
   public void test02()  throws Throwable  {
     DataHandler data = new DataHandler("caldata1.xml", false);
     Appt appt1 = new Appt(15, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
-
     data.saveAppt(appt1);
 
     GregorianCalendar cal = new GregorianCalendar();
@@ -67,17 +62,13 @@ public class DataHandlerTest{
       " --- -------- Appointments ------------ ---\n" +
       "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n," +
       "\t--- 4/20/2018 ---\n" +
-      " --- -------- Appointments ------------ ---\n\n", 
+      " --- -------- Appointments ------------ ---\n\n",
       data.getApptRange(cal2, cal));
-
   }
 
   @Test(timeout = 4000)
   public void test03()  throws Throwable  {
     DataHandler data = new DataHandler("caldata.xml", true);
-    //Appt appt1 = new Appt(15, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
-
-    //assertTrue(data.saveAppt(appt1));
 
     GregorianCalendar cal = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
@@ -89,8 +80,10 @@ public class DataHandlerTest{
     cal.set(GregorianCalendar.MONTH, 4);
     cal.set(GregorianCalendar.DATE, 20);
 
-    assertEquals("", data.getApptRange(cal2, cal));
-
+    assertEquals("\t--- 4/19/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n," +
+      "\t--- 4/20/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n", data.getApptRange(cal2, cal));
   }
 
   @Test(timeout = 4000)
@@ -99,7 +92,6 @@ public class DataHandlerTest{
     Appt appt1 = new Appt(15, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
 
     assertTrue(data.saveAppt(appt1));
-
     assertTrue(data.deleteAppt(appt1));
   }
 
@@ -107,8 +99,6 @@ public class DataHandlerTest{
   public void test05()  throws Throwable  {
     DataHandler data = new DataHandler("caldata.xml", true);
     Appt appt1 = new Appt(15, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
-
-    //assertTrue(data.saveAppt(appt1));
 
     assertFalse(data.deleteAppt(appt1));
   }
@@ -120,7 +110,6 @@ public class DataHandlerTest{
     appt1.setValid();
 
     assertFalse(data.saveAppt(appt1));
-
     assertFalse(data.deleteAppt(appt1));
   }
 
@@ -132,7 +121,6 @@ public class DataHandlerTest{
     appt1.setRecurrence(recurDays, 1, 1 ,8);
 
     assertTrue(data.saveAppt(appt1));
-
     assertTrue(data.deleteAppt(appt1));
   }
 
@@ -144,7 +132,6 @@ public class DataHandlerTest{
     appt1.setRecurrence(recurDays, 1, 1 ,8);
 
     assertTrue(data.saveAppt(appt1));
-
     assertTrue(data.deleteAppt(appt1));
   }
 
@@ -165,9 +152,27 @@ public class DataHandlerTest{
     GregorianCalendar cal2 = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
-    cal.set(GregorianCalendar.DATE, 30);
+    cal.set(GregorianCalendar.DATE, 27);
 
-    assertEquals("", data.getApptRange(cal2, cal));
+    assertEquals("\t--- 4/19/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n" +
+      "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n," +
+      "\t--- 4/20/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/21/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/22/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n" +
+      "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n," +
+      "\t--- 4/23/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/24/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/25/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/26/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n" +
+      "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n,", data.getApptRange(cal2, cal));
   }
 
   @Test(timeout = 4000)
@@ -187,9 +192,26 @@ public class DataHandlerTest{
     GregorianCalendar cal2 = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
-    cal.set(GregorianCalendar.DATE, 30);
+    cal.set(GregorianCalendar.DATE, 27);
 
-    assertEquals("", data.getApptRange(cal2, cal));
+    assertEquals("\t--- 4/19/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n" +
+      "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n," +
+      "\t--- 4/20/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/21/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/22/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/23/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/24/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/25/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/26/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n" +
+      "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n,", data.getApptRange(cal2, cal));
   }
 
   @Test(timeout = 4000)
@@ -197,6 +219,7 @@ public class DataHandlerTest{
     DataHandler data = new DataHandler("caldata.xml", true);
     int [] recurDays = new int [0];
     Appt appt1 = new Appt(15, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
+    //set appt to recurr on same day of week, weekly, once per week, for two occurences
     appt1.setRecurrence(recurDays, 2, 1, 2);
 
     assertTrue(data.saveAppt(appt1));
@@ -209,9 +232,25 @@ public class DataHandlerTest{
     GregorianCalendar cal2 = new GregorianCalendar();
     cal.set(GregorianCalendar.YEAR, 2018);
     cal.set(GregorianCalendar.MONTH, 4);
-    cal.set(GregorianCalendar.DATE, 30);
+    cal.set(GregorianCalendar.DATE, 26);
 
-    assertEquals("", data.getApptRange(cal2, cal));
+    assertEquals("\t--- 4/19/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n" +
+      "\t4/19/2018 at 3:30pm ,Birthday Party, This is my birthday party\n\n," +
+      "\t--- 4/20/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/21/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/22/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/23/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/24/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/25/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n" +
+      "\t--- 4/26/2018 ---\n" +
+      " --- -------- Appointments ------------ ---\n\n", data.getApptRange(cal2, cal));
   }
 
 }
