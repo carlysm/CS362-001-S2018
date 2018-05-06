@@ -15,15 +15,13 @@ public class CalDayTest{
   public void test00()  throws Throwable  {
     CalDay day1 = new CalDay();
     assertFalse(day1.isValid());
+    assertEquals(null, day1.iterator());
 
   }
 
   @Test(timeout = 4000)
   public void test01()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
     assertTrue(day1.isValid());
@@ -39,10 +37,7 @@ public class CalDayTest{
 
   @Test(timeout = 4000)
   public void test02()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -57,10 +52,7 @@ public class CalDayTest{
 
   @Test(timeout = 4000)
   public void test03()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -75,10 +67,7 @@ public class CalDayTest{
 
   @Test(timeout = 4000)
   public void test04()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -98,10 +87,32 @@ public class CalDayTest{
 
   @Test(timeout = 4000)
   public void test05()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
+
+    CalDay day1 = new CalDay(cal);
+
+    Appt appt1 = new Appt(18, 30, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
+    appt1.setValid();
+
+    day1.addAppt(appt1);
+
+    Appt appt2 = new Appt(19, 0, 19, 4, 2018, "Dinner", "Dinner at Taco Vino", "xyz@gmail.com");
+    appt2.setValid();
+
+    day1.addAppt(appt2);
+
+    Appt appt3 = new Appt(19, 30, 19, 4, 2018, "After Party", "This is my after party", "xyz@gmail.com");
+    appt3.setValid();
+
+    day1.addAppt(appt3);
+
+    LinkedList<Appt> appts = new LinkedList<Appt>(Arrays.asList(appt1, appt2, appt3));
+    assertEquals(appts, day1.getAppts());
+  }
+
+  @Test(timeout = 4000)
+  public void test06()  throws Throwable  {
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -109,11 +120,8 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test06()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+  public void test07()  throws Throwable  {
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -125,11 +133,8 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test07()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+  public void test08()  throws Throwable  {
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -142,11 +147,8 @@ public class CalDayTest{
   }
 
   @Test(timeout = 4000)
-  public void test08()  throws Throwable  {
-    GregorianCalendar cal = new GregorianCalendar();
-    cal.set(GregorianCalendar.YEAR, 2018);
-    cal.set(GregorianCalendar.MONTH, 3);
-    cal.set(GregorianCalendar.DATE, 19);
+  public void test09()  throws Throwable  {
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
 
     CalDay day1 = new CalDay(cal);
 
@@ -158,11 +160,18 @@ public class CalDayTest{
     assertEquals("4-19-2018 " + "\n\t" + "12:00AM Birthday Party This is my birthday party ", day1.getFullInfomrationApp(day1));
   }
 
-/*  @Test(timeout = 4000)
-  public void test09()  throws Throwable  {
-    CalDay day1 = new CalDay();
-    assertEquals("", day1.toString());
-    assertEquals("", day1.getFullInfomrationApp(day1));
-  }*/
+  @Test(timeout = 4000)
+  public void test10()  throws Throwable  {
+    GregorianCalendar cal = new GregorianCalendar(2018, 3, 19);
+
+    CalDay day1 = new CalDay(cal);
+
+    Appt appt1 = new Appt(12, 10, 19, 4, 2018, "Birthday Party", "This is my birthday party", "xyz@gmail.com");
+    appt1.setValid();
+
+    day1.addAppt(appt1);
+
+    assertEquals("4-19-2018 " + "\n\t" + "0:10AM Birthday Party This is my birthday party ", day1.getFullInfomrationApp(day1));
+  }
 
 }

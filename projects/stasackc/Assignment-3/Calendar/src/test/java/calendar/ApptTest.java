@@ -17,6 +17,7 @@ public class ApptTest  {
       assertEquals("\t14/9/2018 at 3:30pm ,Birthday Party, This is my birthday party\n", string0);
       assertEquals(0, appt0.getRecurIncrement());
       appt0.setValid();
+      assertEquals("xyz@gmail.com", appt0.getEmailAddress());
   }
 
   @Test(timeout = 4000)
@@ -32,59 +33,18 @@ public class ApptTest  {
 
      Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
 
+     assertTrue(appt.isOn(startDay, startMonth, startYear));
+     assertFalse(appt.isOn(startDay, 12, 2012));
+     assertFalse(appt.isOn(startDay, startMonth, 2012));
+     assertFalse(appt.isOn(startDay, 12, startYear));
      assertFalse(appt.isOn(12, startMonth, startYear));
-   }
-
-@Test(timeout = 4000)
- public void test02()  throws Throwable  {
-   int startHour = 12;
-   int startMinute = 00;
-   int startDay = 19;
-   int startMonth = 4;
-   int startYear = 2018;
-   String title = "CS362 Lecture";
-   String description = "Software Engineering II";
-   String email = "carly@gmail.com";
-
-   Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
-
-   assertFalse(appt.isOn(startDay, startMonth, 2017));
- }
-
- @Test(timeout = 4000)
-  public void test03()  throws Throwable  {
-    int startHour = 12;
-    int startMinute = 00;
-    int startDay = 19;
-    int startMonth = 4;
-    int startYear = 2018;
-    String title = "CS362 Lecture";
-    String description = "Software Engineering II";
-    String email = "carly@gmail.com";
-
-    Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
-
-    assertFalse(appt.isOn(20, 3, 2017));
-  }
-
-  @Test(timeout = 4000)
-   public void test04()  throws Throwable  {
-     int startHour = 12;
-     int startMinute = 00;
-     int startDay = 19;
-     int startMonth = 4;
-     int startYear = 2018;
-     String title = "CS362 Lecture";
-     String description = "Software Engineering II";
-     String email = "carly@gmail.com";
-
-     Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
-
-     assertFalse(appt.isOn(20, 03, startYear));
+     assertFalse(appt.isOn(12, 12, startYear));
+     assertFalse(appt.isOn(12, startMonth, 2012));
+     assertFalse(appt.isOn(12, 12, 2012));
    }
 
  @Test(timeout = 4000)
-  public void test05()  throws Throwable  {
+  public void test02()  throws Throwable  {
     int startDay = 19;
     int startMonth = 4;
     int startYear = 2018;
@@ -93,147 +53,146 @@ public class ApptTest  {
     String email = "carly@gmail.com";
 
     Appt appt = new Appt (startDay, startMonth, startYear, title, description, email);
+    appt.setValid();
 
     assertEquals(-1, appt.getStartMinute());
     assertEquals(-1, appt.getStartHour());
     assertFalse(appt.hasTimeSet());
+    assertFalse(appt.getValid());
   }
 
   @Test(timeout = 4000)
-   public void test06()  throws Throwable  {
-     int startDay = 19;
-     int startMonth = 12;
-     int startYear = 2018;
-     String title = "CS362 Lecture";
-     String description = "Software Engineering II";
+   public void test03()  throws Throwable  {
+     int startHour = 0;
+     int startMinute = 0;
+     int startDay = 1;
+     int startMonth = 1;
+     int startYear = 1;
+     String title = "The beginning";
+     String description = "Bang!";
      String email = "carly@gmail.com";
 
-     Appt appt = new Appt (startDay, startMonth, startYear, title, description, email);
+     Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
      appt.setValid();
-     assertFalse(appt.getValid());
+     assertTrue(appt.getValid());
    }
 
    @Test(timeout = 4000)
-    public void test07()  throws Throwable  {
-      int startHour = 12;
-      int startMinute = 00;
-      int startDay = 19;
-      int startMonth = 4;
-      int startYear = 2018;
-      String title = "CS362 Lecture";
-      String description = "Software Engineering II";
+    public void test04()  throws Throwable  {
+      int startHour = -1;
+      int startMinute = -1;
+      int startDay = 0;
+      int startMonth = 0;
+      int startYear = 0;
+      String title = "Before the beginning";
+      String description = "Bang!";
       String email = "carly@gmail.com";
 
       Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
       appt.setValid();
-
-      assertTrue(appt.hasTimeSet());
-      assertEquals(startHour, appt.getStartHour());
-      assertEquals(startMinute, appt.getStartMinute());
-      assertEquals(startDay, appt.getStartDay());
-      assertEquals(startMonth, appt.getStartMonth());
-      assertEquals(startYear, appt.getStartYear());
-      assertEquals(title, appt.getTitle());
-      assertEquals(description, appt.getDescription());
-      assertEquals(email, appt.getEmailAddress());
-      assertTrue(appt.getValid());
-
-
+      assertFalse(appt.getValid());
     }
 
     @Test(timeout = 4000)
-     public void test08()  throws Throwable  {
-       int startHour = 12;
-       int startMinute = 00;
-       int startDay = 19;
-       int startMonth = 4;
+     public void test05()  throws Throwable  {
+       int startHour = 23;
+       int startMinute = 59;
+       int startDay = 31;
+       int startMonth = 12;
        int startYear = 2018;
-       String title = null;
-       String description = null;
-       String email = null;
-
-       Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
-
-       assertEquals("", appt.getTitle());
-       assertEquals("", appt.getDescription());
-       assertEquals("", appt.getEmailAddress());
-
-
-     }
-
-    @Test(timeout = 4000)
-     public void test09()  throws Throwable  {
-       int startHour = 12;
-       int startMinute = 00;
-       int startDay = 19;
-       int startMonth = 4;
-       int startYear = 2018;
-       String title = "CS362 Lecture";
-       String description = "Software Engineering II";
+       String title = "The end";
+       String description = "Fizzle!";
        String email = "carly@gmail.com";
-       int [] recurDays = new int [] {0, 4};
 
        Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
-
-       appt.setRecurrence(recurDays, 1, 1 ,8);
-       assertTrue(appt.isRecurring());
-       assertEquals(8, appt.getRecurNumber());
+       appt.setValid();
+       assertTrue(appt.getValid());
      }
 
      @Test(timeout = 4000)
-      public void test10()  throws Throwable  {
-        int startHour = 12;
-        int startMinute = 00;
-        int startDay = 19;
-        int startMonth = 4;
+      public void test06()  throws Throwable  {
+        int startHour = 24;
+        int startMinute = 60;
+        int startDay = 32;
+        int startMonth = 13;
         int startYear = 2018;
-        String title = "CS362 Lecture";
-        String description = "Software Engineering II";
+        String title = "After the end";
+        String description = "Fizzle!";
         String email = "carly@gmail.com";
 
         Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
-
-        appt.setRecurrence(null, 1, 1 ,8);
-        assertTrue(appt.isRecurring());
-        assertEquals(8, appt.getRecurNumber());
-      }
-
-     @Test(timeout = 4000)
-      public void test11()  throws Throwable  {
-        int startDay = 1;
-        int startMonth = 0;
-        int startYear = 2018;
-        String title = "CS362 Lecture";
-        String description = "Software Engineering II";
-        String email = "carly@gmail.com";
-
-        Appt appt = new Appt (startDay, startMonth, startYear, title, description, email);
         appt.setValid();
         assertFalse(appt.getValid());
       }
 
       @Test(timeout = 4000)
-       public void test12()  throws Throwable  {
-         int startHour = -2;
-         int startMinute = 00;
-         int startDay = 19;
-         int startMonth = 4;
+       public void test07()  throws Throwable  {
+         int startHour = 23;
+         int startMinute = 60;
+         int startDay = 31;
+         int startMonth = 3;
          int startYear = 2018;
-         String title = "CS362 Lecture";
-         String description = "Software Engineering II";
+         String title = "End of March Party";
+         String description = "Happy Almost April!";
          String email = "carly@gmail.com";
 
          Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
          appt.setValid();
          assertFalse(appt.getValid());
-
-         //assertEquals("\tThis appointment is not valid", appt.toString());
        }
 
        @Test(timeout = 4000)
-        public void test13()  throws Throwable  {
-          int startHour = 0;
-          int startMinute = 0;
+        public void test08()  throws Throwable  {
+          int startHour = 23;
+          int startMinute = 59;
+          int startDay = 31;
+          int startMonth = 2;
+          int startYear = 2018;
+          String title = null;
+          String description = null;
+          String email = null;
+
+          Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
+          appt.setValid();
+          assertFalse(appt.getValid());
+        }
+
+        @Test(timeout = 4000)
+         public void test09()  throws Throwable  {
+           int startHour = 23;
+           int startMinute = 59;
+           int startDay = 0;
+           int startMonth = 2;
+           int startYear = 2018;
+           String title = null;
+           String description = null;
+           String email = null;
+
+           Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
+           appt.setValid();
+           assertFalse(appt.getValid());
+         }
+
+         @Test(timeout = 4000)
+          public void test10()  throws Throwable  {
+            int startHour = 23;
+            int startMinute = 59;
+            int startDay = 1;
+            int startMonth = 2;
+            int startYear = 0;
+            String title = null;
+            String description = null;
+            String email = null;
+
+            Appt appt = new Appt (startHour, startMinute, startDay, startMonth, startYear, title, description, email);
+            appt.setValid();
+            assertFalse(appt.getValid());
+          }
+
+       @Test(timeout = 4000)
+        public void test11()  throws Throwable  {
+          int startHour = 11;
+          int startMinute = 15;
           int startDay = 19;
           int startMonth = 4;
           int startYear = 2018;
@@ -245,7 +204,7 @@ public class ApptTest  {
           appt.setValid();
           assertTrue(appt.getValid());
 
-          assertEquals("\t4/19/2018 at 12:0am ,CS362 Lecture, Software Engineering II\n", appt.toString());
+          assertEquals("\t4/19/2018 at 11:15am ,CS362 Lecture, Software Engineering II\n", appt.toString());
         }
 
 }
