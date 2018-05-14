@@ -33,8 +33,6 @@ public class CalDayRandomTest {
 
 					try{
 						for (int iteration = 0; elapsed < TestTimeout; iteration++) {
-							//long randomseed =System.currentTimeMillis();
-							//Random random = new Random(randomseed);
 						   Random random = new Random(0);
 
 							int numAppts = ValuesGenerator.getRandomIntBetween(random, 1, 3);

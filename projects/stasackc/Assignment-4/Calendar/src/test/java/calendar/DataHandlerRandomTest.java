@@ -29,8 +29,6 @@ public class DataHandlerRandomTest {
 
 		 try{
 			 for (int iteration = 0; elapsed < TestTimeout; iteration++) {
-				 //long randomseed =System.currentTimeMillis();
- 				//Random random = new Random(randomseed);
  			   Random random = new Random(0);
 
 				 int numAppts = ValuesGenerator.getRandomIntBetween(random, 1, 3);
@@ -42,13 +40,10 @@ public class DataHandlerRandomTest {
 
 				 LinkedList<Appt> appts = new LinkedList<Appt>();
 
-				 //if(startDay < CalendarUtil.NumDaysInMonth(startYear, startMonth - 1) + 1){
 				 if(startDay < CalendarUtil.NumDaysInMonth(startYear, startMonth - 1) - 1){
 
 						 GregorianCalendar cal1 = new GregorianCalendar(startYear, startMonth - 1, startDay);
-						 //CalDay day1 = new CalDay(cal1);
 						 GregorianCalendar cal2 = new GregorianCalendar(startYear, startMonth - 1, startDay + 2);
-						 //CalDay day2 = new CalDay(cal2);
 
 						 for (int i = 1; i < numAppts; i++){
 								int startHour=ValuesGenerator.getRandomIntBetween(random, -1, 24);
@@ -60,11 +55,8 @@ public class DataHandlerRandomTest {
 								//Construct a new Appointment object with the initial data
 								Appt appt = new Appt(startHour, startMinute, startDay, startMonth, startYear, title, description, emailAddress);
 								appt.setValid();
-								//day1.addAppt(appt);
 
 								if(startHour > -1 && startHour < 24 && startMinute > -1 && startMinute < 60){
-									//appts.add(appt);
-									//appt is valid, save, delete, get
 									assertFalse(data.deleteAppt(appt));
 
 									//if dates selected are early enough in the month, set weekly recurrence
@@ -136,7 +128,6 @@ public class DataHandlerRandomTest {
 									assertFalse(data.deleteAppt(appt));
 								}
 						}
-						//assertEquals(appts.size(), day1.getAppts().size());
 				 }
 
 
