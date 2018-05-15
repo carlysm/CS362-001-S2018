@@ -61,7 +61,8 @@ public class ApptRandomTest {
 
 		try{
 			for (int iteration = 0; elapsed < TestTimeout; iteration++) {
-			   Random random = new Random(0);
+				 long randomseed =System.currentTimeMillis();
+				 Random random = new Random(randomseed);
 
 				 int startHour=ValuesGenerator.getRandomIntBetween(random, -1, 30);
 				 int startMinute=ValuesGenerator.getRandomIntBetween(random, -1, 70);

@@ -29,7 +29,8 @@ public class DataHandlerRandomTest {
 
 		 try{
 			 for (int iteration = 0; elapsed < TestTimeout; iteration++) {
- 			   Random random = new Random(0);
+				 long randomseed =System.currentTimeMillis();
+				 Random random = new Random(randomseed);
 
 				 int numAppts = ValuesGenerator.getRandomIntBetween(random, 1, 3);
 				 int startDay=ValuesGenerator.getRandomIntBetween(random, 1, 29);
