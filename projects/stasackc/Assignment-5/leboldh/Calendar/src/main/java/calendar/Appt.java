@@ -161,7 +161,6 @@ public class Appt{
         return xmlElement;
     }
 
-
     /**
      * @sets valid to true if the appointment is valid
      */
@@ -176,7 +175,8 @@ public class Appt{
 		else if (startYear <= 0)
 			this.valid = false;
 		else {
-			int NumDaysInMonth = CalendarUtil.NumDaysInMonth(startYear, startMonth);
+//BUG FOUND BY TESTS, FIXED.
+			int NumDaysInMonth = CalendarUtil.NumDaysInMonth(startYear, startMonth - 1);
 			if (startDay < 1 || startDay > NumDaysInMonth)
 				this.valid = false;
 			else
@@ -285,13 +285,13 @@ public class Appt{
         return (day == getStartDay() && month == getStartMonth()
                 && year == getStartYear());
     }
-
     /**
      * Checks to see if a time is set for this appointment.
      * @return True if this appointment has a time set. Otherwise false.
      */
     public boolean hasTimeSet() {
-        return (getStartHour() == NO_TIME);
+//BUG FOUND BY TESTS. FIX
+        return (getStartHour() != NO_TIME);
     }
     /**
      * Sets the recurring information with the correct information
@@ -373,8 +373,8 @@ public class Appt{
     }
     public String toString()
     {
-
-		if (getValid()) {
+//BUG FOUND BY TESTS. FIXED.
+		if (!getValid()) {
 		    System.err.println("\tThis appointment is not valid");
 		}
          String day= this.getStartMonth()+"/"+this.getStartDay()+"/"+this.getStartYear() + " at ";
