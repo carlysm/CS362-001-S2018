@@ -173,7 +173,7 @@ public class CalDay {
 	     StringBuilder sb = new StringBuilder();
 
 		if (isValid()) {
-//BUG FOUND BY TESTS. FIX BUG.
+//BUG FOUND BY TESTS. FIXED.
 			String todayDate = (getMonth()) + "/" + getDay() + "/" + getYear();
 			sb.append("\t --- " + todayDate + " --- \n");
 			sb.append(" --- -------- Appointments ------------ --- \n");

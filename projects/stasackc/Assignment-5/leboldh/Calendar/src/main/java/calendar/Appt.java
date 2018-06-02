@@ -290,7 +290,7 @@ public class Appt{
      * @return True if this appointment has a time set. Otherwise false.
      */
     public boolean hasTimeSet() {
-//BUG FOUND BY TESTS. FIX
+//BUG FOUND BY TESTS. FIXED.
         return (getStartHour() != NO_TIME);
     }
     /**
@@ -373,8 +373,7 @@ public class Appt{
     }
     public String toString()
     {
-//BUG FOUND BY TESTS. FIXED.
-		if (!getValid()) {
+		if (getValid()) {
 		    System.err.println("\tThis appointment is not valid");
 		}
          String day= this.getStartMonth()+"/"+this.getStartDay()+"/"+this.getStartYear() + " at ";
